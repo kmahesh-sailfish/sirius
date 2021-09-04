@@ -1,0 +1,28 @@
+.rowWise {
+  display: flex;
+}
+.colWise {
+  flex: 50%;
+  padding: 10px;
+}
+.cover {
+  object-fit: cover;
+}
+.box {
+  width: 200px;
+  height: 200px;
+}
+@media screen and (max-width: 992px) {
+  .colWise {
+    flex: 100%;
+  }
+  .rowWise {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+@media screen and(max-width:600px) {
+  .rowWise {
+    flex-direction: column;
+  }
+}
