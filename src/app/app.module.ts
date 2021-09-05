@@ -1,14 +1,14 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { FeatureComponent } from './feature/feature.component';
-import { WeatherComponent } from './weather/weather.component';
-import { QuoteComponent } from './quote/quote.component';
-import { CountdownComponent } from './countdown/countdown.component';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { HeaderComponent } from "./header/header.component";
+import { FooterComponent } from "./footer/footer.component";
+import { FeatureComponent } from "./feature/feature.component";
+import { WeatherComponent } from "./weather/weather.component";
+import { QuoteComponent } from "./quote/quote.component";
+import { CountdownComponent } from "./countdown/countdown.component";
 
 @NgModule({
   declarations: [
@@ -20,11 +20,8 @@ import { CountdownComponent } from './countdown/countdown.component';
     QuoteComponent,
     CountdownComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
