@@ -10,7 +10,6 @@ nav a {
 
 header {
   overflow: hidden;
-  background-color: #fde428;
   margin-bottom: 50px;
 }
 body {
@@ -18,9 +17,7 @@ body {
   padding: 0px;
   font-family: "Open Sans", sans-serif;
 }
-nav {
-  margin-right: 17%;
-}
+
 h1 {
   margin: 0px auto;
   font-size: 26px;
