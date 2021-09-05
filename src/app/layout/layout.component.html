@@ -63,11 +63,28 @@
             <div class="colWise2">
                 <form [formGroup]='proposalForm' (ngSubmit)="createProposal()" novalidate>
                     <label for="yname">Your Name</label>&nbsp;
-                    <input type="text" id="yname" name="yname"><br/>
+                    <input type="text" id="yname" formControlName="yname" name="yname" [ngClass]="{ 'is-invalid': submitted && f.yname.errors }"
+                    />
+                    <div *ngIf="submitted && f.yname.errors" class="error">
+                        <div *ngIf="f.yname.errors.required">First Name is required</div>
+                    </div>
+                    <br/>
                     <label for="contactNumber">Contact Number</label>&nbsp;
-                    <input type="text" id="contactNumber" name="contactNumber"><br/>
+                    <input type="text" formControlName="contactNumber" id="contactNumber" name="contactNumber">
+
+
+                    <!--<div *ngIf="f.contactNumber.errors?.minlength" class="error">
+                        Name must be at least 5 characters long.
+                    </div>-->
+                    <br/>
                     <label for="Email" style="margin-left: 30px;">Email</label>&nbsp;
-                    <input type="text" id="email" name="email"><br/>
+                    <input type="text" id="email" formControlName="email" name="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                    />
+                    <div *ngIf="submitted && f.email.errors" class="error">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                    </div>
+                    <br/>
 
                     <button type="submit" class="btn primary">SUBMIT</button>
                 </form>

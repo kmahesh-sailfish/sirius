@@ -1,20 +1,28 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { SiriusService } from "../sirius.service";
-import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
+import {
+  FormGroup,
+  FormControl,
+  FormArray,
+  Validators,
+  FormBuilder
+} from "@angular/forms";
 @Component({
   selector: "app-layout",
   templateUrl: "./layout.component.html",
   styleUrls: ["./layout.component.css"]
 })
 export class LayoutComponent implements OnInit {
+  public submitted: boolean = false;
   public check: any;
   public cityList: any;
   public proposalForm: FormGroup;
   public weatherList: any = [];
   constructor(
     private route: ActivatedRoute,
-    private siriusSerice: SiriusService
+    private siriusSerice: SiriusService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -25,11 +33,21 @@ export class LayoutComponent implements OnInit {
     this.loadForm();
   }
   loadForm() {
-    this.proposalForm = new FormGroup({
-      yname: new FormControl("", [Validators.required]),
-      contactNumber: new FormControl("", [Validators.required]),
-      email: new FormControl("", [Validators.required])
+    this.proposalForm = this.formBuilder.group({
+      yname: ["", Validators.required],
+      contactNumber: ["", Validators.required,Validators.minLength(10),Validators.maxLength(10)],
+      email: [
+        "",
+        [
+          Validators.required,
+          Validators.email,
+          Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
+        ]
+      ]
     });
+  }
+  get f() {
+    return this.proposalForm.controls;
   }
   loadWeather() {
     this.siriusSerice.getWeatherList().subscribe(data => {
@@ -42,7 +60,12 @@ export class LayoutComponent implements OnInit {
     });
   }
   createProposal() {
-    
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.proposalForm.invalid) {
+      return;
+    }
   }
   public getColor(index: number): string {
     switch (index) {
